@@ -48,7 +48,6 @@ export class GoogleProvider extends Component {
             if (place.geometry){
                 this.setPlace(place)
                 map.fitBounds(place.geometry.viewport)
-                console.log(this.state.place)
                 // let postInputMarker = new window.google.maps.Marker({
                 //     position
                 // })
