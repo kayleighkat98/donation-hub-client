@@ -15,7 +15,36 @@ class NewForm extends Component {
 
     firstInput = React.createRef()
     searchBoxRef = React.createRef()
+    
+    // findAddress = () => {
+    //     const { error } = this.state
 
+    //     return(
+    //         <form 
+    //             className="new-form form">
+    //             <div role='alert'>
+    //                 {error && <p>{error}</p>}
+    //             </div>
+    //             <div className="form-line">     
+    //                 <Label htmlFor='location-address-input'>
+    //                     Address:<Required />
+    //                 </Label>
+    //                 <Input
+    //                     ref={this.searchBoxRef}
+    //                     id='location-address-input'
+    //                     name='search'
+    //                     placeholder='Zipcode/Address'
+    //                     required
+    //                 />
+    //             </div>
+    //             <footer className="form-line">
+    //                 <Button type='submit'>
+    //                     Next
+    //                 </Button>
+    //             </footer>
+    //         </form>
+    //     )
+    // }
     handleSubmit = ev => {
         ev.preventDefault()
         const { name, address, description, lat, lon} = ev.target
@@ -39,7 +68,8 @@ class NewForm extends Component {
     render() {
         const { error } = this.state
         return(
-            <form className="new-form form">
+            <form 
+                className="new-form form">
                 <div role='alert'>
                     {error && <p>{error}</p>}
                 </div>
@@ -88,25 +118,7 @@ class NewForm extends Component {
         );
     }
     postRender() {
-        const autocomplete = new window.google.maps.places.Autocomplete(this.searchBoxRef.current);
-        autocomplete.addListener("place_changed", () => {
-
-            const { map } = window;
-            if(!map) // prevent this component from blowing up if tested without an attached map
-            return;
-            const place = autocomplete.getPlace();
-            
-            if (!place.geometry) {
-                // User entered the name of a Place that was not suggested and
-                // pressed the Enter key, or the Place Details request failed.
-                window.alert("No details available for input: '" + place.name + "'");
-                return undefined;
-            }
-            if (place.geometry){
-                this.context.setPlace(place)
-                map.fitBounds(place.geometry.viewport)
-            }
-          })
+        this.context.autocomplete(this.searchBoxRef.current)
     }
 }
 
