@@ -36,10 +36,10 @@ class NewForm extends Component {
 
     handleNext = ev => {
         ev.preventDefault()
-        if (!this.state.hasSite && this.context.place){
+        if (!this.state.hasSite && this.context.newPlace){
             this.setState({hasSite: true})
         }
-        if (!this.state.verifiedSite && this.state.hasSite && this.context.place){
+        if (!this.state.verifiedSite && this.state.hasSite && this.context.newPlace){
             this.setState({verifiedSite: true})
         }
     }
@@ -51,7 +51,7 @@ class NewForm extends Component {
 
     render() {
         const { error } = this.state
-        if (!this.context.place|| !this.state.hasSite){
+        if (!this.context.newPlace|| !this.state.hasSite){
             return(
                 <>
                     <form
@@ -83,10 +83,12 @@ class NewForm extends Component {
                 </>
             );
         }
-        if (!this.state.verifiedSite && this.context.place){
+        if (!this.state.verifiedSite && this.context.newPlace){
             return (
                 <>
-                Double check this is the right place
+                    <div className="verify verify-header">
+                         <h3>Double check this is the right place</h3>
+                    </div>
                     <form
                         className="new-form form"
                         onSubmit= {this.handleNext}
@@ -104,7 +106,7 @@ class NewForm extends Component {
                 </>
             )
         }
-        if (this.state.verifiedSite && this.context.place && this.state.hasSite){
+        if (this.state.verifiedSite && this.context.newPlace && this.state.hasSite){
             return(
                 <form 
                 className="new-form form"

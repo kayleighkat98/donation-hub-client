@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 const GoogleContext = React.createContext({
-    place: {},
+    newPlace: {},
     error: null,
     setError: () => {},
     setPlace: () => {},
@@ -14,7 +14,7 @@ export default GoogleContext
 export class GoogleProvider extends Component {
     constructor(props) {
         super(props)
-        const state = { place: {}, error: null }
+        const state = { newPlace: {}, error: null }
         this.state = state;
     }
 
@@ -26,8 +26,8 @@ export class GoogleProvider extends Component {
     clearError = () => {
         this.setState({ error: null })
     }
-    setPlace = place => {
-        this.setState({ place })
+    setNewPlace = newPlace => {
+        this.setState({ newPlace })
     }
 
     autocompletePostOnly = input => {
@@ -46,8 +46,9 @@ export class GoogleProvider extends Component {
                 return undefined;
             }
             if (place.geometry){
-                this.setPlace(place)
+                this.setNewPlace(place)
                 map.fitBounds(place.geometry.viewport)
+                //(console.log(place.geometry.viewport.getCenter()))
                 // let postInputMarker = new window.google.maps.Marker({
                 //     position
                 // })
@@ -58,10 +59,10 @@ export class GoogleProvider extends Component {
     render() {
 
         const value = {
-            place: this.state.place,
+            newPlace: this.state.newPlace,
             error: this.state.error,
             setError: this.setError,
-            setPlace: this.setPlace,
+            setNewPlace: this.setNewPlace,
             clearError: this.clearError,
             autocompletePostOnly: this.autocompletePostOnly,
         }
