@@ -135,6 +135,7 @@ class NewForm extends Component {
                                 ref={this.firstInput}
                                 id='new-item-name-input'
                                 name='item'
+                                placeholder='ex) Baby Clothes'
                                 required
                             />
                         </div>
@@ -145,7 +146,10 @@ class NewForm extends Component {
                             <Input
                                 id='new-item-amount-input'
                                 type='number'
+                                min= '5'
+                                max= '999'
                                 name='amount'
+                                placeholder='ex) 100'
                                 required
                             />
                         </div>
