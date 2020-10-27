@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom'
 import { UserProvider } from './contexts/UserContext'
 import { HubProvider} from './contexts/HubContext'
+import { GoogleProvider} from './contexts/GoogleContext'
 import App from '../src/components/App/App';
 import './index.css';
 
@@ -18,7 +19,9 @@ window.initMap = () => {
     <BrowserRouter>
       <UserProvider>
         <HubProvider>
-          <App />
+          <GoogleProvider>
+            <App />
+          </GoogleProvider>
         </HubProvider>
       </UserProvider>
     </BrowserRouter>,

@@ -3,14 +3,14 @@ import './NewForm.css';
 import { Input, Required, Label , Textarea} from '../Form/Form';
 import Button from '../Button/Button';
 import SiteService from '../../services/site-service'
-import GoogleService from '../../services/google-service'
+import GoogleContext from '../../contexts/GoogleContext'
 //use input names for reference to server naming convention
 
 class NewForm extends Component {
     static defaultProps = {
         onSubmitSuccess: () => { }
     }
-
+    static contextType = GoogleContext
     state = { error: null }
 
     firstInput = React.createRef()
@@ -88,7 +88,25 @@ class NewForm extends Component {
         );
     }
     postRender() {
-    GoogleService.autocomplete(this.searchBoxRef.current)
+        const autocomplete = new window.google.maps.places.Autocomplete(this.searchBoxRef.current);
+        autocomplete.addListener("place_changed", () => {
+
+            const { map } = window;
+            if(!map) // prevent this component from blowing up if tested without an attached map
+            return;
+            const place = autocomplete.getPlace();
+            
+            if (!place.geometry) {
+                // User entered the name of a Place that was not suggested and
+                // pressed the Enter key, or the Place Details request failed.
+                window.alert("No details available for input: '" + place.name + "'");
+                return undefined;
+            }
+            if (place.geometry){
+                this.context.setPlace(place)
+                map.fitBounds(place.geometry.viewport)
+            }
+          })
     }
 }
 
