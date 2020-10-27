@@ -6,7 +6,7 @@ import './Header.css'
 
 // @TODO: logout should be a button
 // @TODO: Header needs history prop (wrap it in Route)
-
+ 
 class Header extends Component {
   static contextType = UserContext
   handleLogoutClick = () => {
