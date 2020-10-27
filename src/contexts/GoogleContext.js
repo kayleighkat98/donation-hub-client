@@ -31,7 +31,7 @@ export class GoogleProvider extends Component {
         this.setState({ newPlace })
     }
     clearNewPlace = () => {
-        if (this.newPlace){
+        if (this.state.newPlace){
             this.setState({ newPlace : {} })
         }
     }
@@ -69,7 +69,7 @@ export class GoogleProvider extends Component {
             error: this.state.error,
             setError: this.setError,
             setNewPlace: this.setNewPlace,
-            clearNewPlace: this.setNewPlace,
+            clearNewPlace: this.clearNewPlace,
             clearError: this.clearError,
             autocompletePostOnly: this.autocompletePostOnly,
         }
