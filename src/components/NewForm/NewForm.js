@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './NewForm.css';
-import { Input, Required, Label , Textarea} from '../Form/Form';
+import { Input, Required, Label} from '../Form/Form';
 import Button from '../Button/Button';
 import SiteService from '../../services/site-service'
 import GoogleContext from '../../contexts/GoogleContext'
@@ -11,40 +11,14 @@ class NewForm extends Component {
         onSubmitSuccess: () => { }
     }
     static contextType = GoogleContext
-    state = { error: null }
+    state = { 
+        error: null ,
+        hasSite: false,
+        verifiedSite: false,
+    }
 
     firstInput = React.createRef()
     searchBoxRef = React.createRef()
-    
-    // findAddress = () => {
-    //     const { error } = this.state
-
-    //     return(
-    //         <form 
-    //             className="new-form form">
-    //             <div role='alert'>
-    //                 {error && <p>{error}</p>}
-    //             </div>
-    //             <div className="form-line">     
-    //                 <Label htmlFor='location-address-input'>
-    //                     Address:<Required />
-    //                 </Label>
-    //                 <Input
-    //                     ref={this.searchBoxRef}
-    //                     id='location-address-input'
-    //                     name='search'
-    //                     placeholder='Zipcode/Address'
-    //                     required
-    //                 />
-    //             </div>
-    //             <footer className="form-line">
-    //                 <Button type='submit'>
-    //                     Next
-    //                 </Button>
-    //             </footer>
-    //         </form>
-    //     )
-    // }
     handleSubmit = ev => {
         ev.preventDefault()
         const { name, address, description, lat, lon} = ev.target
@@ -60,65 +34,97 @@ class NewForm extends Component {
         })
     }
 
+    handleNext = ev => {
+        ev.preventDefault()
+        if (!this.state.hasSite && this.context.place){
+            this.setState({hasSite: true})
+        }
+        if (!this.state.verifiedSite && this.state.hasSite && this.context.place){
+            this.setState({verifiedSite: true})
+        }
+    }
+
     componentDidMount() {
         this.postRender()
-        this.firstInput.current.focus()
+        this.searchBoxRef.current.focus()
     }
 
     render() {
         const { error } = this.state
-        return(
-            <form 
-                className="new-form form">
+        if (!this.context.place|| !this.state.hasSite){
+            return(
+                <>
+                    <form
+                        className="new-form form"
+                        onSubmit= {this.handleNext}
+                    >
+                        <div role='alert'>
+                            {error && <p>{error}</p>}
+                        </div>
+                        <div className="form-line"> 
+                            <Label htmlFor='location-address-input'>
+                                Find the location to add:<Required />
+                            </Label>
+                            <Input
+                                ref={this.searchBoxRef}
+                                id='location-address-input'
+                                name='search'
+                                placeholder='Zipcode/Address'
+                                required
+                            />
+                        </div>
+
+                        <footer className="form-line">
+                            <Button type='submit'>
+                                Next
+                            </Button>
+                        </footer>
+                    </form>
+                </>
+            );
+        }
+        if (!this.state.verifiedSite && this.context.place){
+            return (
+                <>
+                Double check this is the right place
+                    <form
+                        className="new-form form"
+                        onSubmit= {this.handleNext}
+                    >
+                        <div role='alert'>
+                            {error && <p>{error}</p>}
+                        </div>
+
+                        <footer className="form-line">
+                            <Button type='submit'>
+                                Next
+                            </Button>
+                        </footer>
+                    </form>
+                </>
+            )
+        }
+        if (this.state.verifiedSite && this.context.place && this.state.hasSite){
+            return(
+                <form 
+                className="new-form form"
+                onSubmit={this.handleSubmit}
+                >
                 <div role='alert'>
                     {error && <p>{error}</p>}
                 </div>
-                <div className="form-line">     
-                    <Label htmlFor='location-address-input'>
-                        Address:<Required />
-                    </Label>
-                    <Input
-                        ref={this.searchBoxRef}
-                        id='location-address-input'
-                        name='search'
-                        placeholder='Zipcode/Address'
-                        required
-                    />
-                </div>
-                <div className="form-line">
-                    <Label htmlFor='location-name-input'>
-                        Title :<Required />
-                    </Label>
-                    <Input
-                        ref={this.firstInput}
-                        id='location-name-input'
-                        name='name'
-                        placeholder='Goodwill'
-                        required
-
-                    />
-                </div> 
-                <div className="form-line">
-                    <Label htmlFor="location-description-input">
-                        Description:<Required />
-                    </Label>
-                    <Textarea
-                        id='location-description-input'
-                        name='description'
-                        placeholder='Who benefits from this organization?'
-                        required
-                    />
-                </div>
+                
                 <footer className="form-line">
                     <Button type='submit'>
                         Submit
                     </Button>
                 </footer>
             </form>
-        );
+            )
+        }
     }
     postRender() {
-        this.context.autocomplete(this.searchBoxRef.current)
+        this.context.autocompletePostOnly(this.searchBoxRef.current)
     }
 }
 

@@ -30,7 +30,7 @@ export class GoogleProvider extends Component {
         this.setState({ place })
     }
 
-    autocomplete = input => {
+    autocompletePostOnly = input => {
         const autocomplete = new window.google.maps.places.Autocomplete(input);
         autocomplete.addListener("place_changed", () => {
 
@@ -49,8 +49,11 @@ export class GoogleProvider extends Component {
                 this.setPlace(place)
                 map.fitBounds(place.geometry.viewport)
                 console.log(this.state.place)
+                // let postInputMarker = new window.google.maps.Marker({
+                //     position
+                // })
             }
-          })
+        })
     }
 
     render() {
@@ -61,7 +64,7 @@ export class GoogleProvider extends Component {
             setError: this.setError,
             setPlace: this.setPlace,
             clearError: this.clearError,
-            autocomplete: this.autocomplete,
+            autocompletePostOnly: this.autocompletePostOnly,
         }
         return (
             <GoogleContext.Provider value={value}>
