@@ -51,6 +51,7 @@ export class GoogleProvider extends Component {
                 new window.google.maps.Marker({
                     position: { lat: place.geometry.viewport.getCenter().lat(), lng:place.geometry.viewport.getCenter().lng()},
                     map: map, 
+                    animation: window.google.maps.Animation.DROP,
                 })
             }
         })
