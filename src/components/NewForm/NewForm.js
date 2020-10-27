@@ -105,7 +105,9 @@ class NewForm extends Component {
                         </div>
 
                         <footer className="form-line">
-                            <Button type='button' onClick={this.handlePrevious}>Start Over</Button>
+                            <Button type='button' onClick={this.handlePrevious}>
+                                Start Over
+                            </Button>
                             <Button type='submit'>
                                 Next
                             </Button>
@@ -116,21 +118,47 @@ class NewForm extends Component {
         }
         if (this.state.verifiedSite && this.context.newPlace && this.state.hasSite){//add detatils
             return(
-                <form 
-                className="new-form form"
-                onSubmit={this.handleSubmit}
-                >
-                <div role='alert'>
-                    {error && <p>{error}</p>}
+                <div className='add-items-container'>
+                    <h4>What items does this place need?</h4>
+                    <form 
+                    className="new-form form"
+                    onSubmit={this.handleSubmit}
+                    >
+                        <div role='alert'>
+                            {error && <p>{error}</p>}
+                        </div>
+                        <div className="form-line">
+                            <Label htmlFor='new-item-name-input'>
+                                Item name<Required />
+                            </Label>
+                            <Input
+                                ref={this.firstInput}
+                                id='new-item-name-input'
+                                name='item'
+                                required
+                            />
+                        </div>
+                        <div className="form-line">
+                            <Label htmlFor='new-item-amount-input'>
+                                What is the location's desired amount of this?<Required />
+                            </Label>
+                            <Input
+                                id='new-item-amount-input'
+                                type='number'
+                                name='amount'
+                                required
+                            />
+                        </div>
+                        <footer className="form-line">
+                            <Button type='button' onClick={this.handlePrevious}>
+                                Start Over
+                            </Button>
+                            <Button type='submit'>
+                                Submit
+                            </Button>
+                        </footer>
+                    </form>
                 </div>
-                
-                <footer className="form-line">
-                <Button type='button' onClick={this.handlePrevious}>Start Over</Button>
-                    <Button type='submit'>
-                        Submit
-                    </Button>
-                </footer>
-            </form>
             )
         }
     }
