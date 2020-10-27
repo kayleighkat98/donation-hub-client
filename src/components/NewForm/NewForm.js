@@ -15,6 +15,7 @@ class NewForm extends Component {
         error: null ,
         hasSite: false,
         verifiedSite: false,
+        reviewing: false,
     }
 
     firstInput = React.createRef()
@@ -42,6 +43,10 @@ class NewForm extends Component {
         if (!this.state.verifiedSite && this.state.hasSite && this.context.newPlace){
             this.setState({verifiedSite: true})
         }
+    }
+    handleReview = ev => {
+        ev.preventDefault()
+            this.setState({reviewing: true})
     }
     handlePrevious = ev => {
         ev.preventDefault()
@@ -116,13 +121,13 @@ class NewForm extends Component {
                 </>
             )
         }
-        if (this.state.verifiedSite && this.context.newPlace && this.state.hasSite){//add detatils
+        if (!this.state.reviewing && this.state.verifiedSite && this.context.newPlace && this.state.hasSite){//add detatils
             return(
                 <div className='add-items-container'>
                     <h4>What items does this place need?</h4>
                     <form 
                     className="new-form form"
-                    onSubmit={this.handleSubmit}
+                    onSubmit={this.handleReview}
                     >
                         <div role='alert'>
                             {error && <p>{error}</p>}
@@ -152,6 +157,29 @@ class NewForm extends Component {
                                 placeholder='ex) 100'
                                 required
                             />
+                        </div>
+                        <footer className="form-line">
+                            <Button type='button' onClick={this.handlePrevious}>
+                                Start Over
+                            </Button>
+                            <Button type='submit'>
+                                Review
+                            </Button>
+                        </footer>
+                    </form>
+                </div>
+            )
+        }
+        if (this.state.reviewing){//review before submit
+            return(
+                <div className='new-site-review-container'>
+                    <h4>Review before submitting</h4>
+                   <form 
+                    className="new-form form"
+                    onSubmit={this.handleSubmit}
+                    >
+                        <div role='alert'>
+                            {error && <p>{error}</p>}
                         </div>
                         <footer className="form-line">
                             <Button type='button' onClick={this.handlePrevious}>
