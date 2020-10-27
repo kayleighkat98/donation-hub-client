@@ -4,7 +4,8 @@ const GoogleContext = React.createContext({
     newPlace: {},
     error: null,
     setError: () => {},
-    setPlace: () => {},
+    setNewPlace: () => {},
+    clearNewPlace: () => {},
     clearError: () => {},
     autocomplete: () => {},
 })
@@ -29,7 +30,11 @@ export class GoogleProvider extends Component {
     setNewPlace = newPlace => {
         this.setState({ newPlace })
     }
-
+    clearNewPlace = () => {
+        if (this.newPlace){
+            this.setState({ newPlace : {} })
+        }
+    }
     autocompletePostOnly = input => {
         const autocomplete = new window.google.maps.places.Autocomplete(input);
         autocomplete.addListener("place_changed", () => {
@@ -64,6 +69,7 @@ export class GoogleProvider extends Component {
             error: this.state.error,
             setError: this.setError,
             setNewPlace: this.setNewPlace,
+            clearNewPlace: this.setNewPlace,
             clearError: this.clearError,
             autocompletePostOnly: this.autocompletePostOnly,
         }
