@@ -43,7 +43,13 @@ class NewForm extends Component {
             this.setState({verifiedSite: true})
         }
     }
-
+    handlePrevious = ev => {
+        ev.preventDefault()
+        window.location.reload(false);
+        this.context.clearNewPlace()
+        this.setState({hasSite: false})
+        this.setState({verifiedSite: false})
+    }
     componentDidMount() {
         this.postRender()
         this.searchBoxRef.current.focus()
@@ -51,7 +57,7 @@ class NewForm extends Component {
 
     render() {
         const { error } = this.state
-        if (!this.context.newPlace|| !this.state.hasSite){
+        if (!this.context.newPlace|| !this.state.hasSite){//search for address
             return(
                 <>
                     <form
@@ -83,12 +89,13 @@ class NewForm extends Component {
                 </>
             );
         }
-        if (!this.state.verifiedSite && this.context.newPlace){
+        if (!this.state.verifiedSite && this.context.newPlace){//confirm address
             return (
                 <>
                     <div className="verify verify-header">
-                         <h3>Double check this is the right place</h3>
+                        <h4>Double check this is the right place</h4>
                     </div>
+                    {this.context.newPlace.name}
                     <form
                         className="new-form form"
                         onSubmit= {this.handleNext}
@@ -98,6 +105,7 @@ class NewForm extends Component {
                         </div>
 
                         <footer className="form-line">
+                            <Button type='button' onClick={this.handlePrevious}>Start Over</Button>
                             <Button type='submit'>
                                 Next
                             </Button>
@@ -106,7 +114,7 @@ class NewForm extends Component {
                 </>
             )
         }
-        if (this.state.verifiedSite && this.context.newPlace && this.state.hasSite){
+        if (this.state.verifiedSite && this.context.newPlace && this.state.hasSite){//add detatils
             return(
                 <form 
                 className="new-form form"
@@ -117,6 +125,7 @@ class NewForm extends Component {
                 </div>
                 
                 <footer className="form-line">
+                <Button type='button' onClick={this.handlePrevious}>Start Over</Button>
                     <Button type='submit'>
                         Submit
                     </Button>
