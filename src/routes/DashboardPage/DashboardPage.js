@@ -11,7 +11,7 @@ class DashboardPage extends Component {
     render() {
         return(
             <div className='container'>
-               dashboard content goes here
+               Welcome to your dashboard!
                <br/>
                <Link to='/sites/test'><Button>test link to site page</Button></Link>
                <Link to='/new'><Button>Add a donation site +</Button></Link>
