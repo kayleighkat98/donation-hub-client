@@ -11,12 +11,10 @@ class SitePage extends Component {
 
 
    
-    handleSubmit = (event) => {
+    handleClick = (event) => {
         event.preventDefault()
         alert('Thanks for your donation!')
-        .catch(res => {
-            this.setState({donated: res.alert})
-        })
+    
     } 
 
     static contextType = SiteContext;
@@ -34,7 +32,7 @@ class SitePage extends Component {
                <ul>
                    <li>
                       
-                            <button  onSubmit={this.handleSubmit}>
+                            <button  onClick={this.handleClick}>
                                 <span >Donate Item</span>
                             </button> 
                         <span>clothes || </span>
