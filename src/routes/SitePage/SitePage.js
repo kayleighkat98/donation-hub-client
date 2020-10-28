@@ -51,7 +51,7 @@ class SitePage extends Component {
                     </li>
                 </ul>
                </form>
-               <Link className="user-back-to-dash" to='/dashboard'>Back to Dashboard</Link>
+               <a className="user-back-to-dash" href='javascript:window.history.back()'>Back</a>
             </div>
         );
     }

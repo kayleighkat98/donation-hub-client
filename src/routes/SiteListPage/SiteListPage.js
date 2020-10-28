@@ -52,14 +52,11 @@ class SiteListPage extends Component {
 
     const sw = bounds.getSouthWest(), ne = bounds.getNorthEast();
     const box = [ sw.lng(), ne.lat(), ne.lng(), sw.lat() ];
-
-    const center = map.getCenter();
-    const fakeSite = { lat: center.lat(), lon: center.lng(), label: "Test Site" };
     
     try {
       (await SiteService.search(...box)).forEach(site => {
         const marker = new window.google.maps.Marker({
-          label: site.label,
+          label: site.label[0],
           map: map,
           position: { lat: site.lat, lng: site.lon },
         });
