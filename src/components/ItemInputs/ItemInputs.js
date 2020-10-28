@@ -8,12 +8,13 @@ const ItemInputs = (props) => {
         props.items.map((val, idx)=> {
             let itemId = `item-${idx}`
             return(
-                <div key={idx}htmlFor={`${itemId}-name`}>
+                <div key={idx} htmlFor={`${itemId}`}>
                     <Label htmlFor={`${itemId}-name`}>{`Item #${idx + 1}`}<Required /></Label>
                     <Input
-                        id={`${itemId}-name`}
-                        name={itemId}
-                        className='name'
+                        id={`${itemId+1}-name`}
+                        name={itemId+1}
+                        className="name"
+                        onChange={ev => props.handleItemChange(ev, idx, 'name')}
                         placeholder='ex) Baby Clothes'
                         required
                     />
@@ -27,6 +28,7 @@ const ItemInputs = (props) => {
                         max= '999'
                         name='critical_amount'
                         className='critical_amount'
+                        onChange={ev => props.handleItemChange(ev, idx, 'critical_amount')}
                         placeholder='ex) 100'
                         required
                     />

@@ -57,19 +57,14 @@ class NewForm extends Component {
         this.setState({hasSite: false})
         this.setState({verifiedSite: false})
     }
-    handleItemChange = ev => {
-        console.log('test')
-        if (["name", "critical_amount"].includes(ev.target.className)){
-            let items = [...this.state.items]
-            items[ev.target.dataset.id][ev.target.className] = ev.target.value
-            this.setState({ items }, () => console.log(this.state.items))
-        }else{
-            this.setState({ [ev.target.name]: ev.target.value})
-        }
+    handleItemChange = (ev, idx, property) => {
+        let items = [...this.state.items]
+        items[idx][property] = ev.target.value
+        this.setState({ items }, () => console.log(this.state.items))
     }
     handleAddItem = ev => {
         this.setState((prevState)=> ({
-            items: [...prevState.items, {name:'', critical_amout:''}],
+            items: [...prevState.items, {name:'', critical_amount:''}],
         }));
     }
     componentDidMount() {
@@ -147,7 +142,6 @@ class NewForm extends Component {
                     id='add-item'
                     className="new-form form"
                     onSubmit={this.handleReview}
-                    onChange={(ev)=>this.handleItemChange(ev)}
                     >
                         <div role='alert'>
                             {error && <p>{error}</p>}
