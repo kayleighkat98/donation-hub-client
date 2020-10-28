@@ -3,7 +3,7 @@ import TokenService from './token-service'
 
 const SiteService = {
     postLocation({label, address, description, lat, lon}) {
-        return fetch (`${config.API_ENDPOINT}/site`,{
+        return fetch (`${config.API_ENDPOINT}/sites`,{
             method: 'POST',
             headers: {
                 'authorization': `Bearer ${TokenService.getAuthToken()}`,
@@ -16,11 +16,8 @@ const SiteService = {
         )
     },
     search(...box) {
-        return fetch (`${config.API_ENDPOINT}/site?rect=${box.join(',')}`,{
+        return fetch (`${config.API_ENDPOINT}/sites?rect=${box.join(',')}`,{
             method: 'GET',
-            headers: {
-                'authorization': `Bearer ${TokenService.getAuthToken()}`,
-            },
         }).then(res =>
             (!res.ok)
               ? res.json().then(err => Promise.reject(err))
