@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import './NewForm.css';
-import { Input, Required, Label} from '../Form/Form';
-import Button from '../Button/Button';
+import './NewForm.css'
+import { Input, Required, Label} from '../Form/Form'
+import Button from '../Button/Button'
 import SiteService from '../../services/site-service'
 import GoogleContext from '../../contexts/GoogleContext'
+import ItemInputs from '../ItemInputs/ItemInputs'
 //use input names for reference to server naming convention
 
 class NewForm extends Component {
@@ -56,7 +57,17 @@ class NewForm extends Component {
         this.setState({hasSite: false})
         this.setState({verifiedSite: false})
     }
-    addItem = ev => {
+    handleItemChange = ev => {
+        console.log('test')
+        if (["name", "critical_amount"].includes(ev.target.className)){
+            let items = [...this.state.items]
+            items[ev.target.dataset.id][ev.target.className] = ev.target.value
+            this.setState({ items }, () => console.log(this.state.items))
+        }else{
+            this.setState({ [ev.target.name]: ev.target.value})
+        }
+    }
+    handleAddItem = ev => {
         this.setState((prevState)=> ({
             items: [...prevState.items, {name:'', critical_amout:''}],
         }));
@@ -133,44 +144,23 @@ class NewForm extends Component {
                 <div className='add-items-container'>
                     <h4>What items does this place need?</h4>
                     <form 
+                    id='add-item'
                     className="new-form form"
                     onSubmit={this.handleReview}
+                    onChange={(ev)=>this.handleItemChange(ev)}
                     >
                         <div role='alert'>
                             {error && <p>{error}</p>}
                         </div>
-                        {items.map((val, idx)=> {
-                            let itemId = `item-${idx}`
-                            return(
-                                <div key={idx}>
-                                    <Label htmlFor={`${itemId}-name`}>{`Item #${idx + 1}`}<Required /></Label>
-                                    <Input
-                                        ref={this.firstInput}
-                                        id={`${itemId}-name`}
-                                        name={itemId}
-                                        placeholder='ex) Baby Clothes'
-                                        required
-                                    />
-                                    <Label htmlFor={`${itemId}-amount`}>
-                                        What is the location's desired amount of this?<Required />
-                                    </Label>
-                                    <Input
-                                        id={`${itemId}-amount`}
-                                        type='number'
-                                        min= '5'
-                                        max= '999'
-                                        name='amount'
-                                        placeholder='ex) 100'
-                                        required
-                                    />
-                                </div>
-                            )
-                        })}                        
+                        <ItemInputs
+                            items = {items}
+                            handleItemChange = {this.handleItemChange}
+                        />
                         <footer className="form-line">
                             <Button type='button' onClick={this.handlePrevious}>
                                 Start Over
                             </Button>
-                            <Button type='button' onClick={this.addItem}>
+                            <Button type='button' onClick={this.handleAddItem}>
                                 Add New Item
                             </Button>
                             <Button type='submit'>
