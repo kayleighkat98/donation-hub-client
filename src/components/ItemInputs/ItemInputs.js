@@ -11,7 +11,6 @@ const ItemInputs = (props) => {
                 <div key={idx}htmlFor={`${itemId}-name`}>
                     <Label htmlFor={`${itemId}-name`}>{`Item #${idx + 1}`}<Required /></Label>
                     <Input
-
                         id={`${itemId}-name`}
                         name={itemId}
                         className='name'
