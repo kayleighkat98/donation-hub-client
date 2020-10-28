@@ -16,8 +16,6 @@ const ItemInputs = (props) => {
                         name={itemId}
                         className='name'
                         placeholder='ex) Baby Clothes'
-                        onChange={props.handleItemChange}
-                        value={props.items[idx].name}
                         required
                     />
                     <Label htmlFor={`${itemId}-amount`}>
@@ -31,8 +29,6 @@ const ItemInputs = (props) => {
                         name='critical_amount'
                         className='critical_amount'
                         placeholder='ex) 100'
-                        onChange={props.handleItemChange}
-                        value={props.items[idx].critical_amount}
                         required
                     />
                 </div>
