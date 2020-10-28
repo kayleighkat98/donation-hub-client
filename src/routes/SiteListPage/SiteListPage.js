@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import SearchForm from '../../components/SearchForm/SearchForm';
+import SiteService from '../../services/site-service';
 import './SiteListPage.css';
 
 class SiteListPage extends Component {
@@ -36,29 +37,38 @@ class SiteListPage extends Component {
     map.fitBounds(bounds, { top: offset });
   }
 
-  postRender() {
+  async postRender() {
     const { map } = window;
     if(!map) // prevent this component from blowing up if tested without an attached map
       return;
+
+    window.markers.forEach(marker => marker.setMap(null));
+    window.markers = [];
+
     this.setMapBoundsFromQuery(map, this.props.location.search);
-    // TODO -- build site markers from backend service intead of test data
-    /*
     const bounds = map.getBounds();
+    if(!bounds) // bail if the map doesn't have bounds
+      return;
+
     const sw = bounds.getSouthWest(), ne = bounds.getNorthEast();
     const box = [ sw.lng(), ne.lat(), ne.lng(), sw.lat() ];
-    */
+
     const center = map.getCenter();
     const fakeSite = { lat: center.lat(), lon: center.lng(), label: "Test Site" };
     
-    window.markers.forEach(marker => marker.setMap(null));
-
-    const marker = new window.google.maps.Marker({
-      label: fakeSite.label,
-      map: map,
-      position: { lat: fakeSite.lat, lng: fakeSite.lon },
-    });
-    window.markers = [ marker ];
-    marker.addListener('click', () => this.props.history.push(`/sites/TEST`));
+    try {
+      (await SiteService.search(...box)).forEach(site => {
+        const marker = new window.google.maps.Marker({
+          label: site.label,
+          map: map,
+          position: { lat: site.lat, lng: site.lon },
+        });
+        window.markers.push(marker);
+        marker.addListener('click', () => this.props.history.push(`/sites/${site.id}`));
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {

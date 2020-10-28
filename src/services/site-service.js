@@ -14,6 +14,18 @@ const SiteService = {
               ? res.json().then(err => Promise.reject(err))
               : res.json()
         )
-    }
+    },
+    search(...box) {
+        return fetch (`${config.API_ENDPOINT}/site?rect=${box.join(',')}`,{
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
+            },
+        }).then(res =>
+            (!res.ok)
+              ? res.json().then(err => Promise.reject(err))
+              : res.json()
+        )
+    },
 }
 export default SiteService

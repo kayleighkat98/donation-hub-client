@@ -11,6 +11,11 @@
 .form-line a{
     color: black; 
 }
+Input {
+    border-radius: 8px;
+    background-color: lightblue; 
+}
+
 @media all and (max-width:400px){
 
   .registration-form{
