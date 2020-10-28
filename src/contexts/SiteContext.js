@@ -1,32 +1,29 @@
 import React, { Component } from 'react'
 
-
-
-const HubContext = React.createContext({
-    hubs: {},
+const SiteContext = React.createContext({
+  sites: {},
 });
 
-export default HubContext
+export default SiteContext
 
-export class HubProvider extends Component {
+export class SiteProvider extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-          hubs: {},
-        };
-      }
+  constructor(props) {
+    super(props)
+    this.state = {
+      sites: {},
+    };
+  }
 
-    render() {
-
-        const value = {
-            hubs: this.state.hubs,
-          }
-        return(
-            <HubContext.Provider value={value}>
-                {this.props.children}
-            </HubContext.Provider>
-        )
+  render() {
+    const value = {
+      sites: this.state.sites,
     }
+    return(
+      <SiteContext.Provider value={value}>
+        {this.props.children}
+      </SiteContext.Provider>
+    )
+  }
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom'
 import { UserProvider } from './contexts/UserContext'
-import { HubProvider} from './contexts/HubContext'
+import { SiteProvider} from './contexts/SiteContext'
 import { GoogleProvider} from './contexts/GoogleContext'
 import App from '../src/components/App/App';
 import './index.css';
@@ -18,11 +18,11 @@ window.initMap = () => {
   ReactDOM.render(
     <BrowserRouter>
       <UserProvider>
-        <HubProvider>
+        <SiteProvider>
           <GoogleProvider>
             <App />
           </GoogleProvider>
-        </HubProvider>
+        </SiteProvider>
       </UserProvider>
     </BrowserRouter>,
     document.getElementById('react-root'),

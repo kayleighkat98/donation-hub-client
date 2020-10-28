@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import HubContext from '../../contexts/HubContext'
+import SiteContext from '../../contexts/SiteContext'
 import UserContext from '../../contexts/UserContext'
 
 // @TODO: use static ContextType UserContext
@@ -13,8 +13,8 @@ export default function PrivateRoute({ component, ...props }) {
       {...props}
       render={componentProps => (
         <UserContext.Consumer>
-          {userContext => <HubContext.Consumer>
-            {hubContext =>
+          {userContext => <SiteContext.Consumer>
+            {siteContext =>
               !!userContext.user.id
                 ? <Component {...componentProps} />
                 : (
@@ -26,7 +26,7 @@ export default function PrivateRoute({ component, ...props }) {
                   />
                   )
             }
-          </HubContext.Consumer>}
+          </SiteContext.Consumer>}
 
         </UserContext.Consumer>
       )}

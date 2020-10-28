@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import './SitePage.css';
 import { Link } from 'react-router-dom'
-import HubContext from '../../contexts/HubContext';
+import SiteContext from '../../contexts/SiteContext';
 import image from '../../images/static-hub.jpg'
 
 class SitePage extends Component {
-    static contextType = HubContext;
+    static contextType = SiteContext;
 
 
     render() {
         return(
-            <div className='hub-page-container'>
+            <div className='site-page-container'>
                <h3>Drop Spot</h3>
                <img alt='static-hub'src={image}/>
                <p>last updated: 10-07-2020</p>
