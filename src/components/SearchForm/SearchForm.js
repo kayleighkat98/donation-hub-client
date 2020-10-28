@@ -74,8 +74,10 @@ class SearchForm extends Component {
     const { uiRef } = this.props;
     if(uiRef)
       uiRef.current = this;
-    this.autocomplete = new window.google.maps.places.Autocomplete(this.searchBoxRef.current);
-    this.autocomplete.addListener("place_changed", this.placeChanged);
+    if(window.google) {
+      this.autocomplete = new window.google.maps.places.Autocomplete(this.searchBoxRef.current);
+      this.autocomplete.addListener("place_changed", this.placeChanged);
+    }
   }
 }
 
