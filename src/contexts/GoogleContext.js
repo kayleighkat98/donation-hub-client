@@ -53,7 +53,10 @@ export class GoogleProvider extends Component {
             if (place.geometry){
                 this.setNewPlace(place)
                 map.fitBounds(place.geometry.viewport)
-                new window.google.maps.Marker({
+                if (this.newPlaceMarker){
+                    this.newPlaceMarker.setMap(null)
+                }
+                this.newPlaceMarker = new window.google.maps.Marker({
                     position: { lat: place.geometry.viewport.getCenter().lat(), lng:place.geometry.viewport.getCenter().lng()},
                     map: map, 
                     animation: window.google.maps.Animation.DROP,
