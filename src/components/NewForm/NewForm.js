@@ -16,6 +16,7 @@ class NewForm extends Component {
         hasSite: false,
         verifiedSite: false,
         reviewing: false,
+        items: [{name:'' , critical_amount:''}],
     }
 
     firstInput = React.createRef()
@@ -55,6 +56,11 @@ class NewForm extends Component {
         this.setState({hasSite: false})
         this.setState({verifiedSite: false})
     }
+    addItem = ev => {
+        this.setState((prevState)=> ({
+            items: [...prevState.items, {name:'', critical_amout:''}],
+        }));
+    }
     componentDidMount() {
         this.postRender()
         this.searchBoxRef.current.focus()
@@ -62,6 +68,7 @@ class NewForm extends Component {
 
     render() {
         const { error } = this.state
+        let {items} = this.state
         if (!this.context.newPlace|| !this.state.hasSite){//search for address
             return(
                 <>
@@ -132,35 +139,39 @@ class NewForm extends Component {
                         <div role='alert'>
                             {error && <p>{error}</p>}
                         </div>
-                        <div className="form-line">
-                            <Label htmlFor='new-item-name-input'>
-                                Item name<Required />
-                            </Label>
-                            <Input
-                                ref={this.firstInput}
-                                id='new-item-name-input'
-                                name='item'
-                                placeholder='ex) Baby Clothes'
-                                required
-                            />
-                        </div>
-                        <div className="form-line">
-                            <Label htmlFor='new-item-amount-input'>
-                                What is the location's desired amount of this?<Required />
-                            </Label>
-                            <Input
-                                id='new-item-amount-input'
-                                type='number'
-                                min= '5'
-                                max= '999'
-                                name='amount'
-                                placeholder='ex) 100'
-                                required
-                            />
-                        </div>
+                        {items.map((val, idx)=> {
+                            let itemId = `item-${idx}`
+                            return(
+                                <div key={idx}>
+                                    <Label htmlFor={`${itemId}-name`}>{`Item #${idx + 1}`}<Required /></Label>
+                                    <Input
+                                        ref={this.firstInput}
+                                        id={`${itemId}-name`}
+                                        name={itemId}
+                                        placeholder='ex) Baby Clothes'
+                                        required
+                                    />
+                                    <Label htmlFor={`${itemId}-amount`}>
+                                        What is the location's desired amount of this?<Required />
+                                    </Label>
+                                    <Input
+                                        id={`${itemId}-amount`}
+                                        type='number'
+                                        min= '5'
+                                        max= '999'
+                                        name='amount'
+                                        placeholder='ex) 100'
+                                        required
+                                    />
+                                </div>
+                            )
+                        })}                        
                         <footer className="form-line">
                             <Button type='button' onClick={this.handlePrevious}>
                                 Start Over
+                            </Button>
+                            <Button type='button' onClick={this.addItem}>
+                                Add New Item
                             </Button>
                             <Button type='submit'>
                                 Review
