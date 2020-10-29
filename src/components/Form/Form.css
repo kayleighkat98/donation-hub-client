@@ -1,4 +1,5 @@
 Input {
-    border-radius: 8px;
-    background-color: lightblue; 
+    border-radius: 5px;
+    border-width: 1px;
+    /* background-color: lightblue;  */
 }

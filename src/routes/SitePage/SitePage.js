@@ -3,6 +3,7 @@ import './SitePage.css';
 import { Link } from 'react-router-dom'
 import SiteContext from '../../contexts/SiteContext';
 import image from '../../images/static-hub.jpg'
+import {Input} from '../../components/Form/Form'
 
 class SitePage extends Component {
     static contextType = SiteContext;
@@ -43,7 +44,7 @@ class SitePage extends Component {
                                 </button> 
                             <span>clothes || </span>                       
                             <label htmlFor="quantity">amount donating:</label>
-                            <input className="siteInput" type="number" id="quantity" name="quantity" min="0" max="100"
+                            <Input className="siteInput" type="number" id="quantity" name="quantity" min="0" max="100"
                                 value={this.state.donation}
                                 onChange={this.handleChange}
                             /> 
