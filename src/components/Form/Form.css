@@ -1,5 +1,8 @@
 Input {
-    border-radius: 5px;
-    border-width: 1px;
-    /* background-color: lightblue;  */
+    font: 15px/24px "Lato", Arial, sans-serif; 
+    color: #333; 
+    width: 100%; 
+    box-sizing: border-box; 
+    letter-spacing: 1px;
 }
+/* background-color: lightblue;  */
