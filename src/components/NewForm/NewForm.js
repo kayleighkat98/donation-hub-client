@@ -26,13 +26,13 @@ class NewForm extends Component {
     searchBoxRef = React.createRef()
     handleSubmit = ev => {
         ev.preventDefault()
-        const { name, address, description, lat, lon} = ev.target
         SiteService.postLocation({
-            label: name.label,
-            description: description.value,
-            address: address.value,
-            lat: lat.value,
-            lon: lon.value,
+            label: this.context.newPlace.name,
+            description: this.state.description,
+            address: this.context.newPlace.formatted_address,
+            lat: this.context.newPlace.geometry.viewport.getCenter().lat(),
+            lon: this.context.newPlace.geometry.viewport.getCenter().lng(),
+            place_id: this.context.newPlace.place_id(),
         })
         .catch(res => {
         this.setState({ error: res.error })
@@ -214,10 +214,10 @@ class NewForm extends Component {
                 <div className='new-site-review-container'>
                     <h4>Review before submitting</h4>
                     <div className='site-page-container'>
-                        <h3>{name}</h3>
+                        <h2>{name}</h2>
                         {/* <img alt='static-hub'src={image}/>             */}
+                        <h4>Description:</h4>{this.state.description}
                         <h4>Items Needed:</h4>
-                        Description:{this.state.description}
                         <ul>
                             {this.state.items.map((val, idx)=> {
                                 let itemId = `item-${idx}`
