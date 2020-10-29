@@ -143,7 +143,7 @@ class NewForm extends Component {
                 </>
             )
         }
-        if (!this.state.hasDescription && this.state.verifiedSite &&  this.context.newPlace && this.state.hasSite){
+        if (!this.state.hasDescription && this.state.verifiedSite &&  this.context.newPlace && this.state.hasSite){//add description
             return (
                 <>
                     <form
