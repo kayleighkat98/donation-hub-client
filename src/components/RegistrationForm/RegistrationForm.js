@@ -28,20 +28,16 @@ class RegistrationForm extends Component {
       label: name.value,
       username: username.value,
       password: password.value,
+    }).then(user => {
+      name.value = ''
+      username.value = ''
+      password.value = ''
+      passwordVerify.value=''
+      this.props.onRegistrationSuccess()
     })
-      .then(user => {
-        name.value = ''
-        username.value = ''
-        password.value = ''
-        passwordVerify.value=''
-        this.props.onRegistrationSuccess()
-      })
-      .catch(res => {
-        this.setState({ error: res.error })
-      })
-      // .catch(res=> {
-      //   res({error})
-      // })
+    .catch(res => {
+      this.setState({ error: res.error })
+    })
   }
 
   componentDidMount() {
