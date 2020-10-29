@@ -18,6 +18,7 @@ class NewForm extends Component {
         verifiedSite: false,
         reviewing: false,
         hasDescription: false,
+        description: null,
         items: [{name:'' , critical_amount:''}],
     }
 
@@ -70,6 +71,10 @@ class NewForm extends Component {
         this.setState((prevState)=> ({
             items: [...prevState.items, {name:'', critical_amount:''}],
         }));
+    }
+    handleDescriptionChange = (ev) => {
+        console.log(ev.target.value)
+        this.setState({description: ev.target.value})
     }
     componentDidMount() {
         this.postRender()
@@ -156,6 +161,7 @@ class NewForm extends Component {
                                 id='new-description-input'
                                 name='description'
                                 placeholder='description'
+                                onChange={this.handleDescriptionChange}
                                 required
                             />
                         </div>
@@ -210,18 +216,19 @@ class NewForm extends Component {
                     <div className='site-page-container'>
                         <h3>{name}</h3>
                         {/* <img alt='static-hub'src={image}/>             */}
-                        <h3>Items Needed:</h3>
+                        <h4>Items Needed:</h4>
+                        Description:{this.state.description}
                         <ul>
-                        {this.state.items.map((val, idx)=> {
-                            let itemId = `item-${idx}`
-                            return(
-                                <li key={idx} htmlFor={`${itemId}`} className='item-form'>
-                                    <p>{val.name}</p>
-                                    <p>{val.critical_amount}</p>
-                                    <br/>
-                                </li>
-                            )
-                        })}
+                            {this.state.items.map((val, idx)=> {
+                                let itemId = `item-${idx}`
+                                return(
+                                    <li key={idx} htmlFor={`${itemId}`} className='item-form'>
+                                        <p>{val.name}</p>
+                                        <p>{val.critical_amount}</p>
+                                        <br/>
+                                    </li>
+                                )
+                            })}
                         </ul>
                     </div>
                    <form 
