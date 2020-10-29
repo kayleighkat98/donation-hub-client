@@ -64,7 +64,7 @@ class NewForm extends Component {
     handleItemChange = (ev, idx, property) => {
         let items = [...this.state.items]
         items[idx][property] = ev.target.value
-        this.setState({ items }, () => console.log(this.state.items))
+        this.setState({ items })
     }
     handleAddItem = ev => {
         this.setState((prevState)=> ({
@@ -203,9 +203,27 @@ class NewForm extends Component {
             )
         }
         if (this.state.reviewing){//review before submit
+            const {name} = this.context.newPlace
             return(
                 <div className='new-site-review-container'>
                     <h4>Review before submitting</h4>
+                    <div className='site-page-container'>
+                        <h3>{name}</h3>
+                        {/* <img alt='static-hub'src={image}/>             */}
+                        <h3>Items Needed:</h3>
+                        <ul>
+                        {this.state.items.map((val, idx)=> {
+                            let itemId = `item-${idx}`
+                            return(
+                                <li key={idx} htmlFor={`${itemId}`} className='item-form'>
+                                    <p>{val.name}</p>
+                                    <p>{val.critical_amount}</p>
+                                    <br/>
+                                </li>
+                            )
+                        })}
+                        </ul>
+                    </div>
                    <form 
                     className="new-form form"
                     onSubmit={this.handleSubmit}
