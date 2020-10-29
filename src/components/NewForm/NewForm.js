@@ -17,6 +17,7 @@ class NewForm extends Component {
         hasSite: false,
         verifiedSite: false,
         reviewing: false,
+        hasDescription: false,
         items: [{name:'' , critical_amount:''}],
     }
 
@@ -44,6 +45,9 @@ class NewForm extends Component {
         }
         if (!this.state.verifiedSite && this.state.hasSite && this.context.newPlace){
             this.setState({verifiedSite: true})
+        }
+        if (!this.state.hasDescription && this.state.verifiedSite && this.state.hasSite && this.context.newPlace){
+            this.setState({hasDescription: true})
         }
     }
     handleReview = ev => {
@@ -107,7 +111,7 @@ class NewForm extends Component {
                 </>
             );
         }
-        if (!this.state.verifiedSite && this.context.newPlace){//confirm address
+        if (!this.state.verifiedSite && this.context.newPlace && this.state.hasSite){//confirm address
             return (
                 <>
                     <div className="verify verify-header">
@@ -134,7 +138,40 @@ class NewForm extends Component {
                 </>
             )
         }
-        if (!this.state.reviewing && this.state.verifiedSite && this.context.newPlace && this.state.hasSite){//add detatils
+        if (!this.state.hasDescription && this.state.verifiedSite &&  this.context.newPlace && this.state.hasSite){
+            return (
+                <>
+                    <form
+                        className="new-form form"
+                        onSubmit= {this.handleNext}
+                    >
+                        <div role='alert'>
+                            {error && <p>{error}</p>}
+                        </div>
+                        <div className="form-line"> 
+                            <Label htmlFor='new-description-input'>
+                                Description:<Required />
+                            </Label>
+                            <Input
+                                id='new-description-input'
+                                name='description'
+                                placeholder='description'
+                                required
+                            />
+                        </div>
+                        <footer className="form-line">
+                            <Button type='button' onClick={this.handlePrevious}>
+                                Start Over
+                            </Button>
+                            <Button type='submit'>
+                                Next
+                            </Button>
+                        </footer>
+                    </form>
+                </>
+            )
+        }
+        if (!this.state.reviewing && this.state.hasDescription && this.state.verifiedSite && this.context.newPlace && this.state.hasSite){//add detatils
             return(
                 <div className='add-items-container'>
                     <h4>What items does this place need?</h4>
