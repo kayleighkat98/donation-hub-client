@@ -10,7 +10,6 @@ class SearchForm extends Component {
 
   componentDidMount() {
     this.postRender();
-    this.searchBoxRef.current.focus();
   }
   
   componentDidUpdate() {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './SitePage.css';
-import { Link } from 'react-router-dom'
 import SiteContext from '../../contexts/SiteContext';
 import image from '../../images/static-hub.jpg'
 import {Input} from '../../components/Form/Form'

@@ -1,5 +1,6 @@
 import React from "react"
 import { Input, Required, Label} from '../Form/Form';
+import './ItemInputs.css'
 const ItemInputs = (props) => {
 
        // this.searchBoxRef.current.focus()
@@ -8,7 +9,7 @@ const ItemInputs = (props) => {
         props.items.map((val, idx)=> {
             let itemId = `item-${idx}`
             return(
-                <div key={idx} htmlFor={`${itemId}`}>
+                <div key={idx} htmlFor={`${itemId}`} className='item-form'>
                     <Label htmlFor={`${itemId}-name`}>{`Item #${idx + 1}`}<Required /></Label>
                     <Input
                         id={`${itemId+1}-name`}
@@ -32,6 +33,7 @@ const ItemInputs = (props) => {
                         placeholder='ex) 100'
                         required
                     />
+
                 </div>
             )
         })
