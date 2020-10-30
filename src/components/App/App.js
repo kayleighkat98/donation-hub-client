@@ -50,6 +50,10 @@ class App extends Component {
               path={'/new'}
               component={NewLocationPage}
             />
+            <PrivateRoute
+              path={'/new/:id'}
+              component={SitePage}
+            />
             <PublicOnlyRoute
               path={'/register'}
               component={RegistrationPage}
