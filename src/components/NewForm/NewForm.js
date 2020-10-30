@@ -27,12 +27,12 @@ class NewForm extends Component {
     handleSubmit = ev => {
         ev.preventDefault()
         SiteService.postLocation({
-            label: this.context.newPlace.name,
-            description: this.state.description,
-            address: this.context.newPlace.formatted_address,
             lat: this.context.newPlace.geometry.viewport.getCenter().lat(),
             lon: this.context.newPlace.geometry.viewport.getCenter().lng(),
-            place_id: this.context.newPlace.place_id(),
+            label: this.context.newPlace.name,
+            address: this.context.newPlace.formatted_address,
+            description: this.state.description,
+            place_id: this.context.newPlace.place_id,
         })
         .catch(res => {
         this.setState({ error: res.error })
@@ -177,7 +177,7 @@ class NewForm extends Component {
                 </>
             )
         }
-        if (!this.state.reviewing && this.state.hasDescription && this.state.verifiedSite && this.context.newPlace && this.state.hasSite){//add detatils
+        if (!this.state.reviewing && this.state.hasDescription && this.state.verifiedSite && this.context.newPlace && this.state.hasSite){//add items
             return(
                 <div className='add-items-container'>
                     <h4>What items does this place need?</h4>
