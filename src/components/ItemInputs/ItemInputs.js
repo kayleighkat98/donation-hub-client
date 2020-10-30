@@ -1,5 +1,6 @@
 import React from "react"
 import { Input, Required, Label} from '../Form/Form';
+import Button from '../Button/Button';
 import './ItemInputs.css'
 const ItemInputs = (props) => {
 
@@ -33,6 +34,7 @@ const ItemInputs = (props) => {
                         placeholder='ex) 100'
                         required
                     />
+                    <Button>Delete Item</Button>
 
                 </div>
             )
