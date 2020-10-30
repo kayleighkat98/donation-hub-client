@@ -11,7 +11,6 @@ class SitePage extends Component {
         donated: false,
         donation: ''
     }
-
    
     handleSubmit = (event) => {
         event.preventDefault()
@@ -23,31 +22,26 @@ class SitePage extends Component {
         this.setState({donation: e.target.value})
     } 
 
-    static contextType = SiteContext;
-
-
     render() {
-       
-        const donated = this.state.handleSubmit
+        const id = +this.props.match.params.id;
+        const site = this.context.sites.find(site => site.id === id);
         return(
             <div className='site-page-container'>
-               <h3>Drop Spot</h3>
-               <img alt='static-hub'src={image}/>            
-               <h3>Items Needed:</h3>
-               <form  onSubmit={this.handleSubmit}>
+                <h3>{site.label}</h3>
+                {/*<img alt='static-hub'src={image}/>*/}            
+                <h3>Items Needed:</h3>
+                <form onSubmit={this.handleSubmit}>
                 <ul>
                     <li>
-                        
-                                <button type="submit" >
-                                    <span >Donate Item</span>
-                                </button> 
-                            <span>clothes || </span>                       
-                            <label htmlFor="quantity">amount donating:</label>
-                            <Input className="siteInput" type="number" id="quantity" name="quantity" min="0" max="100"
-                                value={this.state.donation}
-                                onChange={this.handleChange}
-                            /> 
-                            
+                        <button type="submit" >
+                            <span >Donate Item</span>
+                        </button> 
+                        <span>clothes || </span>                       
+                        <label htmlFor="quantity">amount donating:</label>
+                        <Input className="siteInput" type="number" id="quantity" name="quantity" min="0" max="100"
+                            value={this.state.donation}
+                            onChange={this.handleChange}
+                        />                             
                     </li>
                 </ul>
                </form>

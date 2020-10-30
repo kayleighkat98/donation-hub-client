@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import SearchForm from '../../components/SearchForm/SearchForm';
+import SiteContext from '../../contexts/SiteContext';
 import SiteService from '../../services/site-service';
 import './SiteListPage.css';
 
 class SiteListPage extends Component {
+
+  static contextType = SiteContext;
 
   static defaultProps = {
     location: {},
@@ -54,7 +57,9 @@ class SiteListPage extends Component {
     const box = [ sw.lng(), ne.lat(), ne.lng(), sw.lat() ];
     
     try {
-      (await SiteService.search(...box)).forEach(site => {
+      const sites = await SiteService.search(...box);
+      this.context.sites = sites;
+      sites.forEach(site => {
         const marker = new window.google.maps.Marker({
           label: site.label[0],
           map: map,
