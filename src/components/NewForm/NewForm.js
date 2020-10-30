@@ -72,6 +72,12 @@ class NewForm extends Component {
             items: [...prevState.items, {name:'', critical_amount:''}],
         }));
     }
+    handleDeleteItem = ( idx) => {
+        console.log('fix me')
+        // let items = [...this.state.items]
+        // let filteredItems = items.filter((item ,id)=> item[id] !==item[idx])
+        // this.setState({items: {filteredItems}})
+    }
     handleDescriptionChange = (ev) => {
         console.log(ev.target.value)
         this.setState({description: ev.target.value})
@@ -192,6 +198,7 @@ class NewForm extends Component {
                         <ItemInputs
                             items = {items}
                             handleItemChange = {this.handleItemChange}
+                            handleDeleteItem = {this.handleDeleteItem}
                         />
                         <footer className="form-line">
                             <Button type='button' onClick={this.handlePrevious}>

@@ -13,7 +13,7 @@ const ItemInputs = (props) => {
                 <div key={idx} htmlFor={`${itemId}`} className='item-form'>
                     <Label htmlFor={`${itemId}-name`}>{`Item #${idx + 1}`}<Required /></Label>
                     <Input
-                        id={`${itemId+1}-name`}
+                        id={`${itemId}-name`}
                         name={itemId+1}
                         className="name"
                         onChange={ev => props.handleItemChange(ev, idx, 'name')}
@@ -34,7 +34,7 @@ const ItemInputs = (props) => {
                         placeholder='ex) 100'
                         required
                     />
-                    <Button>Delete Item</Button>
+                    <Button onClick={ev => props.handleDeleteItem(idx)}>Delete Item</Button>
 
                 </div>
             )

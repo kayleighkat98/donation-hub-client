@@ -22,7 +22,7 @@ const SiteService = {
         return fetch (`${config.API_ENDPOINT}/sites?rect=${box.join(',')}`,{
             method: 'GET',
         }).then(res =>
-            console.log(res.json)
+ 
             (!res.ok)
               ? res.json().then(err => Promise.reject(err))
               : res.json()
