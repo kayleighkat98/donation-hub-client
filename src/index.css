@@ -27,8 +27,8 @@ body {
   box-shadow: 5px 10px#196DDB;
   background-color: white;
   border-radius: 1rem;
-  margin: 1rem;
-  padding: 1rem;
+  margin: 1rem; /* there's significant css & js depending on these values... */
+  padding: 1rem; /* ...so don't change them lightly */
   pointer-events: auto;
 }
 

@@ -22,8 +22,10 @@ class NewForm extends Component {
         items: [{name:'' , critical_amount:''}],
     }
 
-    firstInput = React.createRef()
-    searchBoxRef = React.createRef()
+    firstInput = React.createRef();
+    searchBoxRef = React.createRef();
+    lastUiRef = React.createRef();
+
     handleSubmit = ev => {
         ev.preventDefault()
         SiteService.postLocation({
@@ -35,7 +37,7 @@ class NewForm extends Component {
             place_id: this.context.newPlace.place_id,
         })
         .catch(res => {
-        this.setState({ error: res.error })
+            this.setState({ error: res.error });
         })
     }
 
@@ -116,7 +118,7 @@ class NewForm extends Component {
                             />
                         </div>
 
-                        <footer className="form-line">
+                        <footer ref={this.lastUiRef} className="form-line">
                             <Button type='submit'>
                                 Next
                             </Button>
@@ -262,7 +264,11 @@ class NewForm extends Component {
         }
     }
     postRender() {
-        this.context.autocompletePostOnly(this.searchBoxRef.current)
+        const lastUiNode = this.lastUiRef.current;
+        // height of the top area, plus 4rem for App (margin-top + padding-top + padding-bottom + margin-bottom)
+        const padding = lastUiNode ? lastUiNode.getBoundingClientRect().bottom
+            + 4 * parseFloat(window.getComputedStyle(document.documentElement).fontSize) : 0;
+        this.context.autocompletePostOnly(this.searchBoxRef.current, padding);
     }
 }
 

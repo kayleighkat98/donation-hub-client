@@ -54,6 +54,7 @@ class SearchForm extends Component {
     const { history } = this.props;
     const place = this.autocomplete.getPlace();
     if(!place.geometry){
+      /*
       const predictionService = new window.google.maps.places.AutocompleteService();
       predictionService.getPlacePredictions({input:place.name}, (predictions) => {
         if(predictions.length) {
@@ -61,6 +62,7 @@ class SearchForm extends Component {
           // TODO maybe use this prediction
         }
       });
+      */
       return;
     }
     window.sessionStorage.setItem("targetPlace", place);

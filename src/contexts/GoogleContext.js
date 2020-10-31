@@ -35,13 +35,15 @@ export class GoogleProvider extends Component {
             this.setState({ newPlace : {} })
         }
     }
-    autocompletePostOnly = input => {
+    autocompletePostOnly = (input, topPadding) => {
         const autocomplete = new window.google.maps.places.Autocomplete(input);
         autocomplete.addListener("place_changed", () => {
+            window.markers.forEach(marker => marker.setMap(null));
+            window.markers = [];
 
             const { map } = window;
             if(!map) // prevent this component from blowing up if tested without an attached map
-            return;
+                return;
             const place = autocomplete.getPlace();
             
             if (!place.geometry) {
@@ -49,18 +51,15 @@ export class GoogleProvider extends Component {
                 // pressed the Enter key, or the Place Details request failed.
                 window.alert("Please start over and select a valid location");
                 return undefined;
-            }
-            if (place.geometry){
-                this.setNewPlace(place)
-                map.fitBounds(place.geometry.viewport)
-                if (this.newPlaceMarker){
-                    this.newPlaceMarker.setMap(null)
-                }
+            } else {
+                this.setNewPlace(place);
+                map.fitBounds(place.geometry.viewport, { top: topPadding });
                 this.newPlaceMarker = new window.google.maps.Marker({
                     position: { lat: place.geometry.viewport.getCenter().lat(), lng:place.geometry.viewport.getCenter().lng()},
                     map: map, 
                     animation: window.google.maps.Animation.DROP,
-                })
+                });
+                window.markers.push(this.newPlaceMarker);
             }
         })
     }

@@ -45,6 +45,7 @@ class SitePage extends Component {
                     </li>
                 </ul>
                </form>
+               {/* eslint-disable jsx-a11y/anchor-is-valid, no-script-url */}
                <a className="user-back-to-dash" href='javascript:window.history.back()'>Back</a>
             </div>
         );
