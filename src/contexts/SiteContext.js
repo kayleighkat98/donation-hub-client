@@ -11,7 +11,7 @@ export class SiteProvider extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      sites: {},
+      sites: [],
     };
   }
 

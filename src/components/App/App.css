@@ -1,3 +1,8 @@
 button{
     color: rgb(25, 109, 219);
 }
+
+.App {
+    max-height: calc(100% - 4rem);
+    overflow: auto;
+}

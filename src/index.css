@@ -18,6 +18,8 @@ body {
 }
 
 #react-root {
+  height: 100vh;
+  overflow: auto;
   pointer-events: none;
 }
 
