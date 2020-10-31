@@ -72,11 +72,14 @@ class NewForm extends Component {
             items: [...prevState.items, {name:'', critical_amount:''}],
         }));
     }
-    handleDeleteItem = ( idx) => {
-        console.log('fix me')
-        // let items = [...this.state.items]
-        // let filteredItems = items.filter((item ,id)=> item[id] !==item[idx])
-        // this.setState({items: {filteredItems}})
+    handleDeleteItem = (index) => {
+        console.log(index);
+        this.setState(prevState => {
+            const { items: oldItems } = prevState;
+            const newItems = oldItems;
+            newItems.splice(index, 1);
+            return { items: newItems };
+        });
     }
     handleDescriptionChange = (ev) => {
         console.log(ev.target.value)

@@ -7,7 +7,7 @@ const ItemInputs = (props) => {
        // this.searchBoxRef.current.focus()
     
     return (
-        props.items.map((val, idx)=> {
+        props.items.map((item, idx)=> {
             let itemId = `item-${idx}`
             return(
                 <div key={idx} htmlFor={`${itemId}`} className='item-form'>
@@ -19,6 +19,7 @@ const ItemInputs = (props) => {
                         onChange={ev => props.handleItemChange(ev, idx, 'name')}
                         placeholder='ex) Baby Clothes'
                         required
+                        value={item.name}
                     />
                     <Label htmlFor={`${itemId}-amount`}>
                         What is the location's desired amount of this?<Required />
@@ -33,9 +34,11 @@ const ItemInputs = (props) => {
                         onChange={ev => props.handleItemChange(ev, idx, 'critical_amount')}
                         placeholder='ex) 100'
                         required
+                        value={item.critical_amount}
                     />
-                    <Button onClick={ev => props.handleDeleteItem(idx)}>Delete Item</Button>
-
+                    <Button onClick={ev => { ev.preventDefault(); props.handleDeleteItem(idx) }}>
+                        Delete Item
+                    </Button>
                 </div>
             )
         })
