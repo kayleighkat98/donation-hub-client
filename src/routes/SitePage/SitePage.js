@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './SitePage.css';
 import SiteContext from '../../contexts/SiteContext';
-import image from '../../images/static-hub.jpg'
 import {Input} from '../../components/Form/Form'
 
 class SitePage extends Component {
@@ -28,6 +27,7 @@ class SitePage extends Component {
         return(
             <div className='site-page-container'>
                 <h3>{site.label}</h3>
+                <a className="link-to-directions" rel="noopener noreferrer" target="_blank" href={site.url}>Get Directions</a>
                 {/*<img alt='static-hub'src={image}/>*/}            
                 <h3>Items Needed:</h3>
                 <form onSubmit={this.handleSubmit}>
