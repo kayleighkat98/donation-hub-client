@@ -64,6 +64,7 @@ class SiteListPage extends Component {
           label: site.label[0],
           map: map,
           position: { lat: site.lat, lng: site.lon },
+          animation: window.google.maps.Animation.DROP,
         });
         window.markers.push(marker);
         marker.addListener('click', () => this.props.history.push(`/sites/${site.id}`));
