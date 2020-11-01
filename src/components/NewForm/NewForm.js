@@ -34,7 +34,10 @@ class NewForm extends Component {
             label: this.context.newPlace.name,
             address: this.context.newPlace.formatted_address,
             description: this.state.description,
+            formatted_phone_number: this.context.newPlace.formatted_phone_number,
             place_id: this.context.newPlace.place_id,
+            url: this.context.newPlace.url,
+            website:this.context.newPlace.website
         })
         .catch(res => {
             this.setState({ error: res.error });
