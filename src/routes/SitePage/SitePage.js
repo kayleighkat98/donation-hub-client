@@ -48,9 +48,9 @@ class SitePage extends Component {
         return(
             <form onSubmit={this.handleSubmit}>
                 <ul>    
-                    {this.state.inventory.map(item=>{
+                    {this.state.inventory.map((item,i)=>{
                         return(
-                            <li>
+                            <li key={i}>
                                 <span>{item.item_name} </span>                       
                                 <Input className="siteInput" type="number" id="quantity" name="quantity" min="0" max="100"
                                     value={this.state.donation}
@@ -67,6 +67,27 @@ class SitePage extends Component {
            </form>
         )
     }
+    renderPhoneNumber(site){
+        if (site.formatted_phone_number !== 'No phone number on file'){
+            return(
+                <a href={`tel:${site.formatted_phone_number}`}>{site.formatted_phone_number}</a>
+            )
+        }
+        return(
+            site.formatted_phone_number
+        )
+    }
+    renderWebsite(site){
+        if (site.website !== 'No website on file'){
+            return(
+                <a href={`${site.website}`}>{site.website}</a>
+            )
+        }
+        return(
+            site.website
+        )
+    }
+
     render() {
         const id = +this.props.match.params.id;
         const site = this.context.sites.find(site => site.id === id);
@@ -75,6 +96,9 @@ class SitePage extends Component {
         return(
             <div className='site-page-container'>
                 <h3>{site.label}</h3>
+                <p> {site.address}</p>
+                <p>Website: {this.renderWebsite(site)}</p>
+                <p>Phone: {this.renderPhoneNumber(site)} </p>
                 <h3>Items Needed:</h3>
                 {this.renderInventory()}
                {/* eslint-disable jsx-a11y/anchor-is-valid, no-script-url */}
