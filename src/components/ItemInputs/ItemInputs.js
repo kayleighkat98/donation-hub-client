@@ -15,11 +15,11 @@ const ItemInputs = (props) => {
                     <Input
                         id={`${itemId}-name`}
                         name={itemId+1}
-                        className="name"
-                        onChange={ev => props.handleItemChange(ev, idx, 'name')}
+                        className="item_name"
+                        onChange={ev => props.handleItemChange(ev, idx, 'item_name')}
                         placeholder='ex) Baby Clothes'
                         required
-                        value={item.name}
+                        value={item.item_name}
                     />
                     <Label htmlFor={`${itemId}-amount`}>
                         What is the location's desired amount of this?<Required />
