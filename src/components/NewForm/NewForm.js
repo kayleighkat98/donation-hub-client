@@ -116,7 +116,7 @@ class NewForm extends Component {
                                 ref={this.searchBoxRef}
                                 id='location-address-input'
                                 name='search'
-                                placeholder='Zipcode/Address'
+                                placeholder='ex) Salvation Army'
                                 required
                             />
                         </div>
@@ -137,6 +137,10 @@ class NewForm extends Component {
                         <h4>Double check this is the right place</h4>
                     </div>
                     {this.context.newPlace.name}
+                    <br/>
+                    {this.context.newPlace.formatted_address}
+                    <br/>
+                    {this.context.newPlace.formatted_phone_number}
                     <form
                         className="new-form form"
                         onSubmit= {this.handleNext}
