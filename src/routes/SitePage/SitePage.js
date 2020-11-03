@@ -80,7 +80,7 @@ class SitePage extends Component {
     renderWebsite(site){
         if (site.website && site.website !== 'No website on file'){
             return(
-                <a href={`${site.website}`} target='_blank' rel='noopener noreferrer'>{site.website}</a>
+                <a href={`${site.website}`} target='_blank' rel='noopener noreferrer'>Visit Website</a>
             )
         }
         return(
@@ -95,7 +95,7 @@ class SitePage extends Component {
             <div className='site-page-container'>
                 <h3>{site.label}</h3>
                 <p> {site.address}</p>
-                <p>Website: {this.renderWebsite(site)}</p>
+                <p>{this.renderWebsite(site)}</p>
                 <p>Phone: {this.renderPhoneNumber(site)} </p>
                 <h3>Items Needed:</h3>
                 {this.renderInventory()}
