@@ -78,7 +78,6 @@ class NewForm extends Component {
         }));
     }
     handleDeleteItem = (index) => {
-        console.log(index);
         this.setState(prevState => {
             const { items: oldItems } = prevState;
             const newItems = oldItems;
@@ -87,7 +86,6 @@ class NewForm extends Component {
         });
     }
     handleDescriptionChange = (ev) => {
-        console.log(ev.target.value)
         this.setState({description: ev.target.value})
     }
     componentDidMount() {

@@ -25,7 +25,6 @@ export class SiteProvider extends Component {
   }
   setInventory = (inventory) => {
     this.setState({inventory})
-    console.log(this.state.inventory)
   }
   render() {
     const value = {
