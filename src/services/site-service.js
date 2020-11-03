@@ -10,7 +10,7 @@ const SiteService = {
                 'content-type': 'application/json'
             },
             body: JSON.stringify({lat, lon, label, address, description, formated_phone_number, place_id, url, website}),
-            
+
         }).then(res =>
             (!res.ok)
               ? res.json().then(err => Promise.reject(err))
@@ -28,5 +28,14 @@ const SiteService = {
               : res.json()
         )
     },
+    findInventoryById (id) {
+        return fetch (`${config.API_ENDPOINT}/items/${id}`,{
+            method: 'GET',
+        }).then(res =>
+            (!res.ok)
+              ? res.json().then(err => Promise.reject(err))
+              : res.json()
+        )
+    }
 }
 export default SiteService
