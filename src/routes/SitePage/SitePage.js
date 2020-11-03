@@ -78,21 +78,19 @@ class SitePage extends Component {
         )
     }
     renderWebsite(site){
-        if (site.website !== 'No website on file'){
+        if (site.website && site.website !== 'No website on file'){
             return(
-                <a href={`${site.website}`}>{site.website}</a>
+                <a href={`${site.website}`} target='_blank' rel='noopener noreferrer'>{site.website}</a>
             )
         }
         return(
             site.website
         )
     }
-
     render() {
         const id = +this.props.match.params.id;
         const site = this.context.sites.find(site => site.id === id);
         this.loadInventory(id)
-        console.log(this.state.inventory)
         return(
             <div className='site-page-container'>
                 <h3>{site.label}</h3>
