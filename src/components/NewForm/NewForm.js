@@ -19,7 +19,7 @@ class NewForm extends Component {
         reviewing: false,
         hasDescription: false,
         description: null,
-        items: [{name:'' , critical_amount:''}],
+        items: [{item_name:'' , critical_amount:''}],
     }
 
     firstInput = React.createRef();
@@ -37,8 +37,10 @@ class NewForm extends Component {
             formatted_phone_number: this.context.newPlace.formatted_phone_number,
             place_id: this.context.newPlace.place_id,
             url: this.context.newPlace.url,
-            website:this.context.newPlace.website
-        })
+            website:this.context.newPlace.website,
+            items: this.state.items
+        }
+        )
         .catch(res => {
             this.setState({ error: res.error });
         })
@@ -74,7 +76,7 @@ class NewForm extends Component {
     }
     handleAddItem = ev => {
         this.setState((prevState)=> ({
-            items: [...prevState.items, {name:'', critical_amount:''}],
+            items: [...prevState.items, {item_name:'', critical_amount:''}],
         }));
     }
     handleDeleteItem = (index) => {
@@ -240,7 +242,7 @@ class NewForm extends Component {
                                 let itemId = `item-${idx}`
                                 return(
                                     <li key={idx} htmlFor={`${itemId}`} className='item-form'>
-                                        <p>{val.name}</p>
+                                        <p>{val.item_name}</p>
                                         <p>{val.critical_amount}</p>
                                         <br/>
                                     </li>
