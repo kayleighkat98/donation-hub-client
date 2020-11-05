@@ -14,7 +14,6 @@ class DashboardPage extends Component {
                Welcome to your dashboard!
                <br/>
                <SearchForm/>
-               <Link to='/sites/test'><Button>test link to site page</Button></Link>
                <Link to='/new'><Button>Add a donation site +</Button></Link>
             </div>
         );
