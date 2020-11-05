@@ -10,17 +10,23 @@ class SitePage extends Component {
     state = {
         inventory: null,
         donated: false,
-        donation: ''
+        donations: [],
     }
    
     handleSubmit = (event) => {
-        event.preventDefault()
-        this.setState({donation: ''})
-        alert('Thanks for your donation!')
+        event.preventDefault();
+        this.setState(oldState => ({donations: oldState.donations.map(() => '')}));
+        alert('Thanks for your donation!');
     } 
 
-    handleChange = (e) => {
-        this.setState({donation: e.target.value})
+    handleChange = e => {
+        const { target } = e;
+        this.setState(oldState => {
+            const { donations: oldDonations, ...rest } = oldState;
+            const donations = [ ...oldDonations ];
+            donations[+target.attributes['data-index'].value] = target.value;
+            return { donations, ...rest };
+        });
     } 
     async loadInventory (id)  {
         if (this.state.inventory === null){
@@ -35,12 +41,13 @@ class SitePage extends Component {
         }
     }
     renderInventory () {
-        if (this.state.inventory === null){
+        const { inventory, donations } = this.state;
+        if (inventory === null){
             return(
                 <p>loading...</p>
             )
         }
-        if (this.state.inventory.length < 1){
+        if (inventory.length < 1){
             return(
                 <p> No information available for this organization's needs. Login or signup to update.</p>
             )
@@ -48,22 +55,22 @@ class SitePage extends Component {
         return(
             <form onSubmit={this.handleSubmit}>
                 <ul>    
-                    {this.state.inventory.map((item,i)=>{
+                    {inventory.map((item,i)=>{
                         return(
                             <li key={i}>
                                 <span>{item.item_name} </span>                       
-                                <Input className="siteInput" type="number" id="quantity" name="quantity" min="0" max="100"
-                                    value={this.state.donation}
+                                <Input className="siteInput" type="number"
+                                    id={`quantity${i}`} data-index={i}
+                                    name={`quantity${i}`} min="0" max="100"
+                                    value={donations[i]}
                                     onChange={this.handleChange}
                                     placeholder='amount donating'
                                 />                             
-                                <button type="submit" >
-                                    <span >Donate Item</span>
-                                </button> 
                             </li>
                         )
                     })}
                 </ul>
+                {inventory.length ? <button type="submit"><span>Donate</span></button> : ''} 
            </form>
         )
     }
@@ -100,7 +107,7 @@ class SitePage extends Component {
                 <h3>Items Needed:</h3>
                 {this.renderInventory()}
                {/* eslint-disable jsx-a11y/anchor-is-valid, no-script-url */}
-                <a className="link-to-directions" rel="noopener noreferrer" target="_blank" href={site.url}>Get Directions</a>    
+                <a className="link-to-directions" rel="noopener noreferrer" target="_blank" href={site.url}>Get Directions</a>
                 <br/>       
                <a className="user-back-to-dash" href='javascript:window.history.back()'>Back</a>
             </div>
