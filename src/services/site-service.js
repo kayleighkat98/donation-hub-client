@@ -2,8 +2,10 @@ import config from '../config'
 import TokenService from './token-service'
 
 const SiteService = {
-    postLocation( {lat, lon, label, address, description, formatted_phone_number, place_id, url, website,items}) {
-           return fetch (`${config.API_ENDPOINT}/sites`,{
+    postLocation(
+        {lat, lon, label, address, description, formatted_phone_number, place_id, url, website,items}
+    ){
+        return fetch (`${config.API_ENDPOINT}/sites`,{
             method: 'POST',
             headers: {
                 'authorization': `Bearer ${TokenService.getAuthToken()}`,
@@ -29,7 +31,8 @@ const SiteService = {
                     body: JSON.stringify({item_name,critical_amount,site_id}),
         
                 })
-            })
+            });
+            return data;
         })
     },
     search(...box) {

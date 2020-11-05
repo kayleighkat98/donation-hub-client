@@ -39,8 +39,11 @@ class NewForm extends Component {
             url: this.context.newPlace.url,
             website:this.context.newPlace.website,
             items: this.state.items
-        }
-        )
+        })
+        .then(newSite => {
+            // TODO merge google and site contexts so we can save the new site and redirect to it
+            this.props.onSubmitSuccess(newSite.id);
+        })
         .catch(res => {
             this.setState({ error: res.error });
         })

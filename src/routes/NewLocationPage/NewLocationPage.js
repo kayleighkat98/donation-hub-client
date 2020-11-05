@@ -9,7 +9,8 @@ class NewLocationPage extends Component {
           push: () => { },
         },
     }
-    handleSubmitSuccess = () => {
+    handleSubmitSuccess = newSiteId => {
+        // TODO redirect to the new site instead once we've made the necessary changes for that not to crash
         const { location, history } = this.props
         const destination = (location.state || {}).from || '/dashboard'
         history.push(destination)
