@@ -3,8 +3,7 @@ import { Input, Required, Label} from '../Form/Form';
 import Button from '../Button/Button';
 import './ItemInputs.css'
 const ItemInputs = (props) => {
-
-       // this.searchBoxRef.current.focus()
+    
     
     return (
         props.items.map((item, idx)=> {
