@@ -6,7 +6,7 @@ Julia Bugayev, Angela Thomas, and Kayleigh Young!
 If you would like to view the DonationHub website, follow this link:
 # https://donation-hub-client.vercel.app
 and the DonationHub repository here:
-# https://cryptic-fjord-37790.herokuapp.com/
+# https://github.com/kayleighkat98/donation-hub-client
 If you would like to view the API for this website, you can find the deployed version here:
 # https://cryptic-fjord-37790.herokuapp.com/
 and the repository for the API here:
