@@ -19,8 +19,9 @@ class LandingPage extends Component {
             <div className="landingText">
                 Stop donating whatever to wherever or whoever, and start giving your belongings the second life they deserve
                 by donating through Donation Hub! Welcome to Donation Hub, where you can find the donation centers nearest to you and 
-                see what items they are most in need of. Make an account to give back to the community even more through sharing your donations, 
-                flagging inaccurate information, and letting us know when there are new donation centers in your area. Get started today!
+                see what items they are most in need of. You can search for organizations near you without logging in, or make an account to give
+                back to the community even more through sharing your donations, flagging inaccurate information, and letting us know when there are
+                new donation centers in your area. Get started today!
             </div>
              
             <SearchForm/>
