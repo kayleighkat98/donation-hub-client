@@ -22,6 +22,8 @@ class LandingPage extends Component {
                 see what items they are most in need of. You can search for organizations near you without logging in, or make an account to give
                 back to the community even more through sharing your donations, flagging inaccurate information, and letting us know when there are
                 new donation centers in your area. Get started today!
+                <br>
+                Here's an account to get you started! Username: angeladt10261997 Password: 1234AbCd!
             </div>
              
             <SearchForm/>
