@@ -46,7 +46,7 @@ Deployment:
 ![Here is a screenshot](AppScreenshots/DonationHubImage2.png)
 ![Here is a screenshot](AppScreenshots/DonationHubImage3.png)
 ![Here is a screenshot](AppScreenshots/DonationHubImage4.png)
-![Here is a screenshot](AppScreenshots/DonationHubImages5.png)
+![Here is a screenshot](AppScreenshots/DonatinHubImages5.png)
 ![Here is a screenshot](AppScreenshots/DonationHubImages6.png)
 ![Here is a screenshot](AppScreenshots/DonationHubImages7.png)
 ![Here is a screenshot](AppScreenshots/DonationHubImages8.png)
