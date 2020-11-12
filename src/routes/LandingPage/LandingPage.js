@@ -17,13 +17,19 @@ class LandingPage extends Component {
         return(
             <>
             <div className="landingText">
+              <p>
                 Stop donating whatever to wherever or whoever, and start giving your belongings the second life they deserve
                 by donating through Donation Hub! Welcome to Donation Hub, where you can find the donation centers nearest to you and 
                 see what items they are most in need of. You can search for organizations near you without logging in, or make an account to give
                 back to the community even more through sharing your donations, flagging inaccurate information, and letting us know when there are
                 new donation centers in your area. Get started today!
-                <br>
-                Here's an account to get you started! Username: angeladt10261997 Password: 1234AbCd!
+              </p>
+              <p>
+                If you are just a guest on the site, feel free to use the login credentials below.
+              </p>
+              <p>
+                Username: angeladt10261997 Password: 1234AbCd!
+              </p>
             </div>
              
             <SearchForm/>

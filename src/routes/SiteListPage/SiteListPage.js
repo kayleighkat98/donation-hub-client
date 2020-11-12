@@ -14,6 +14,9 @@ class SiteListPage extends Component {
       push: () => { },
     },
   }
+  state = { 
+    searchReturnedResults: null
+  }
 
   uiRef = React.createRef();
 
@@ -39,7 +42,27 @@ class SiteListPage extends Component {
     const bounds = new window.google.maps.LatLngBounds(sw, ne);
     map.fitBounds(bounds, { top: offset });
   }
-
+  
+  handleRender() {
+    if (this.state.searchReturnedResults === null){
+      return(
+        <>
+          <p>
+            Content Loading...
+          </p>
+        </>
+      )
+    }
+    if (this.state.searchReturnedResults === false){
+      return(
+        <>
+          <p>
+            No donation centers found in your area. Create an account or Log in to add a new center or search somewhere else
+          </p>
+        </>
+      )
+    }
+  }
   async postRender() {
     const { map } = window;
     if(!map) // prevent this component from blowing up if tested without an attached map
@@ -59,7 +82,8 @@ class SiteListPage extends Component {
     try {
       const sites = await SiteService.search(...box);
       this.context.sites = sites;
-      sites.forEach(site => {
+      return (
+        sites.forEach(site => {
         const marker = new window.google.maps.Marker({
           label: site.label[0],
           map: map,
@@ -68,6 +92,17 @@ class SiteListPage extends Component {
         });
         window.markers.push(marker);
         marker.addListener('click', () => this.props.history.push(`/sites/${site.id}`));
+
+      })).then(()=>{
+        
+        if (window.markers.length > 1 ){
+          this.setState({searchReturnedResults: true})
+        }else{
+          this.setState({searchReturnedResults: false})
+        }
+        this.handleRender()
+      }).then(()=>{
+        console.log('test')
       });
     } catch (err) {
       console.log(err);
@@ -79,6 +114,7 @@ class SiteListPage extends Component {
       <>
         {/* keeping this div around for now because it may help us animate the position of the
             SearchForm when entering this route */}
+        {this.handleRender()}
         <div className="landingText"></div>
         <SearchForm uiRef={this.uiRef} />
       </>
