@@ -37,7 +37,6 @@ Users are also able to go in and add donation sites for organizations that may n
 * @testing-library/jest-dom
 * @testing-library/react
 * @testing-library/user-event
-
 ### DEV DEPENDENCIES:
 * cross-env
 ## Screenshot(s)
@@ -53,3 +52,8 @@ Users are also able to go in and add donation sites for organizations that may n
 ![Here is a screenshot](AppScreenshots/DonationHubImages10.png)
 ![Here is a screenshot](AppScreenshots/DonationHubImages11.png)
 ![Here is a screenshot](AppScreenshots/DonationHubImages12.png)
+## Contributors:
+* ANGELA: https://github.com/
+* JOHN: https://github.com/johnadney
+* JULIA: https://github.com/jbugayev18
+* KAYLEIGH: https://github.com/kayleighkat98
