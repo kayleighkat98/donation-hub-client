@@ -54,16 +54,8 @@ class SearchForm extends Component {
     const { history } = this.props;
     const place = this.autocomplete.getPlace();
     if(!place.geometry){
-      /*
-      const predictionService = new window.google.maps.places.AutocompleteService();
-      predictionService.getPlacePredictions({input:place.name}, (predictions) => {
-        if(predictions.length) {
-          const { place_id, description } = predictions[0];
-          // TODO maybe use this prediction
-        }
-      });
-      */
-      return;
+      window.alert("Please select a valid location from the list");
+      return undefined;
     }
     window.sessionStorage.setItem("targetPlace", place);
     const { viewport } = place.geometry;
