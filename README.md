@@ -19,19 +19,6 @@ If you would like to view the Donation-Hub website, follow this link:
 * items { GET, POST }
     * '/api/items/:site_id (GET)
     * '/api/items/:site_id/items' (POST)
-## Screenshot(s)
-![Here is a screenshot](AppScreenshots/DonationHubImage1.png)
-![Here is a screenshot](AppScreenshots/DonationHubImage2.png)
-![Here is a screenshot](AppScreenshots/DonationHubImage3.png)
-![Here is a screenshot](AppScreenshots/DonationHubImage4.png)
-![Here is a screenshot](AppScreenshots/DonatinHubImages5.png)
-![Here is a screenshot](AppScreenshots/DonationHubImages6.png)
-![Here is a screenshot](AppScreenshots/DonationHubImages7.png)
-![Here is a screenshot](AppScreenshots/DonationHubImages8.png)
-![Here is a screenshot](AppScreenshots/DonationHubImages9.png)
-![Here is a screenshot](AppScreenshots/DonationHubImages10.png)
-![Here is a screenshot](AppScreenshots/DonationHubImages11.png)
-![Here is a screenshot](AppScreenshots/DonationHubImages12.png)
 ## Summary
 In most scenarios, people are willing to donate. However, it is not always clear what organizations
 really need or how much of what they are seeking is needed. In order to help strengthen the donation 
@@ -53,3 +40,16 @@ Users are also able to go in and add donation sites for organizations that may n
 
 ### DEV DEPENDENCIES:
 * cross-env
+## Screenshot(s)
+![Here is a screenshot](AppScreenshots/DonationHubImage1.png)
+![Here is a screenshot](AppScreenshots/DonationHubImage2.png)
+![Here is a screenshot](AppScreenshots/DonationHubImage3.png)
+![Here is a screenshot](AppScreenshots/DonationHubImage4.png)
+![Here is a screenshot](AppScreenshots/DonatinHubImages5.png)
+![Here is a screenshot](AppScreenshots/DonationHubImages6.png)
+![Here is a screenshot](AppScreenshots/DonationHubImages7.png)
+![Here is a screenshot](AppScreenshots/DonationHubImages8.png)
+![Here is a screenshot](AppScreenshots/DonationHubImages9.png)
+![Here is a screenshot](AppScreenshots/DonationHubImages10.png)
+![Here is a screenshot](AppScreenshots/DonationHubImages11.png)
+![Here is a screenshot](AppScreenshots/DonationHubImages12.png)
