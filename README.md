@@ -22,10 +22,10 @@ If you would like to view the Donation-Hub website, follow this link:
 ## Summary
 In most scenarios, people are willing to donate. However, it is not always clear what organizations
 really need or how much of what they are seeking is needed. In order to help strengthen the donation 
-process, we decided to create Donation Hub. DonationHub exists as a way to centralize the efforts community
-champions (donators) need in order to best serve their communities. By using the DonationHub website, users 
+process, we decided to create Donation Hub. Donation-Hub exists as a way to centralize the efforts community
+champions (donators) need in order to best serve their communities. By using the Donation-Hub website, users 
 are able to locate organization near them, browse items that location needs, and give as they please accordingly. 
-Users are also able to go in and add donation sites for organizations that may not be as internet accesible. 
+Users are also able to go in and add donation sites for organizations that may not be as internet accessible.  
 ## Technology
 ### REGULAR DEPENDENCIES:
 * classnames
