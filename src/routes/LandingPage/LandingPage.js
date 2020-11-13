@@ -2,14 +2,12 @@ import React, { Component } from 'react'
 import './LandingPage.css';
 import SearchForm from '../../components/SearchForm/SearchForm'
 
-
-
 class LandingPage extends Component {
 
     static defaultProps = {
         location: {},
         history: {
-          push: () => { },
+          push: () => {},
         },
       }
 
@@ -28,7 +26,7 @@ class LandingPage extends Component {
                 If you are just a guest on the site, feel free to use the login credentials below.
               </p>
               <p>
-                Username: angeladt10261997 Password: 1234AbCd!
+                Username: guest Password: Password!1
               </p>
             </div>
              
