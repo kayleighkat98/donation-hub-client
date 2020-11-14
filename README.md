@@ -1,5 +1,5 @@
 # Donation-Hub
-Thank you for visiting Donation-Hub, a collaborative project created by John Adney,
+Thank you for visiting Donation-Hub, a collaborative project created by 
 Julia Bugayev, Angela Thomas, and Kayleigh Young!
 ## Link to the live project
 If you would like to view the Donation-Hub website, follow this link:
